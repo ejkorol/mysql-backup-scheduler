@@ -28,8 +28,6 @@ $ sudo apt-get install sshpass
 $ npm i -g pm2
 ```
 
-### ENV
-
 ## Running / Setup
 
 1. Update the env variables in a new `.env` file based on `.env.sample` in the root direcotry.
