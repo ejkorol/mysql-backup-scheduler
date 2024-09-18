@@ -32,19 +32,27 @@ $ npm i -g pm2
 
 1. Update the env variables in a new `.env` file based on `.env.sample` in the root direcotry.
 
-2. *Compile typescript*
+2. Create a file in your *home directory* `.my.cnf` based on `.my.cnf.sample`.
+
+3. Grant correct permissions to the `.my.cnf` file so only you can read it.
+
+```bash
+$ chmod 600 ~/.my.cnf
+```
+
+4. *Compile typescript*
 
 ```bash
 $ npm run build
 ```
 
-3. *start pm2 process*
+5. *start pm2 process*
 
 ```bash
 $ pm2 start build/index.js
 ```
 
-4. *check if backup service is running*
+6. *check if backup service is running*
 
 _Check if services running_
 

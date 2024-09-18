@@ -10,7 +10,6 @@ dotenv.config();
 /* MySQL credentials */
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
-const DB_PASS = process.env.DB_PASS;
 const DB_NAME = process.env.DB_NAME;
 
 /* Remote machine for SCP */
@@ -23,7 +22,6 @@ const SCP_PASS = process.env.SCP_PASS;
 if (
   !DB_HOST ||
   !DB_USER ||
-  !DB_PASS ||
   !DB_NAME ||
   !LOCAL_USER ||
   !LOCAL_HOST ||
@@ -46,7 +44,7 @@ const backupDatabase = () => {
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
   const backupFile = `${BACKUP_DIR}/${DB_NAME}-${timestamp}.sql`;
 
-  const dumpCommand = `mysqldump --host=${DB_HOST} --user=${DB_USER} --password=${DB_PASS} ${DB_NAME} > ${backupFile}`;
+  const dumpCommand = `mysqldump --defaults-extra-file=~/.my.cnf ${DB_NAME} > ${backupFile}`;
   const scpCommand = `sshpass -p ${SCP_PASS} scp ${backupFile} ${LOCAL_USER}@${LOCAL_HOST}:${LOCAL_DIR}`;
 
   exec(dumpCommand, (error, _stdout, stderr) => {
